@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    overflow: hidden;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e4e8;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a3c6d;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a3c6d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #153258;
+}
+
+/* Main layout using Flexbox */
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    width: 100vw;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+/* Left Column (Form and Added Locations) */
+.left-column {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e4e8;
+    overflow-y: auto;
+}
+
+.form-container, .log-container, .order-container {
+    margin-bottom: 20px;
+}
+
+.form-container h5, .log-container h5, .order-container h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1a3c6d;
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border: 1px solid #e0e4e8;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1a3c6d;
+    box-shadow: 0 0 5px rgba(26, 60, 109, 0.1);
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #1a3c6d;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #153258;
+}
+
+.log-entry, .order-entry {
+    padding: 10px;
+    border-bottom: 1px solid #e0e4e8;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.log-entry:hover, .order-entry:hover {
+    background-color: #f0f2f5;
+}
+
+.log-entry:last-child, .order-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry-number {
+    background-color: #ff6200;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.log-entry-content, .order-entry-content {
+    flex: 1;
+}
+
+.log-entry-actions, .order-entry-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-danger, .btn-secondary, .btn-info {
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-secondary:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+/* Map Container */
+.map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f5f7fa;
+}
+
+.map-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-success, .btn-outline-primary {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-outline-primary {
+    border-color: #1a3c6d;
+    color: #1a3c6d;
+}
+
+.btn-outline-primary:hover {
+    background-color: #1a3c6d;
+    color: #fff;
+}
+
+.spinner {
+    display: none;
+    margin: 0 5px;
+}
+
+#map {
+    flex: 1;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    min-height: 400px;
+}
+
+/* Marker Styling */
+.marker-number {
+    background-color: #ff6200;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Toast */
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1050;
+}
+
+.toast {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+/* Tablet (768px to 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .navbar {
+        padding: 8px 15px;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .navbar-links a {
+        font-size: 0.85rem;
+    }
+
+    .left-column {
+        width: 300px;
+        padding: 15px;
+    }
+
+    .form-container h5, .log-container h5, .order-container h5 {
+        font-size: 1rem;
+    }
+
+    .form-control {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .btn-primary {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .log-entry, .order-entry {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .log-entry-number {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+
+    .btn-danger, .btn-secondary, .btn-info {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+
+    .map-container {
+        padding: 15px;
+    }
+
+    .map-buttons {
+        gap: 8px;
+    }
+
+    .btn-success, .btn-outline-primary {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+    }
+
+    #map {
+        border-radius: 10px;
+        min-height: 350px;
+    }
+
+    .toast-container {
+        top: 70px;
+        right: 15px;
+    }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 8px 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-links {
+        gap: 15px;
+    }
+
+    .navbar-links a {
+        font-size: 0.8rem;
+    }
+
+    .main-container {
+        flex-direction: column;
+        height: calc(100vh - 50px);
+        margin-top: 50px;
+    }
+
+    .left-column {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e4e8;
+        padding: 15px;
+        max-height: 50vh;
+    }
+
+    .form-container h5, .log-container h5, .order-container h5 {
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .btn-primary {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .log-entry, .order-entry {
+        font-size: 0.8rem;
+        padding: 8px;
+        flex-wrap: wrap;
+    }
+
+    .log-entry-number {
+        width: 20px;
+        height: 20px;
+        font-size: 0.75rem;
+    }
+
+    .log-entry-content, .order-entry-content {
+        flex: 1 1 100%;
+        margin-bottom: 5px;
+    }
+
+    .log-entry-actions, .order-entry-actions {
+        flex: 1 1 100%;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+    .btn-danger, .btn-secondary, .btn-info {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+
+    .map-container {
+        padding: 10px;
+        flex: 1;
+    }
+
+    .map-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn-success, .btn-outline-primary {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    #map {
+        border-radius: 8px;
+        min-height: 300px;
+    }
+
+    .toast-container {
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+
+    .toast {
+        font-size: 0.8rem;
+    }
+}
