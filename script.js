@@ -1,5 +1,5 @@
 // API Base URL
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://mapper-backend-aagk.onrender.com/api';
 const MAPTILER_API_KEY = 'eSJd56lRWAdu5w15yA6P';
 
 // Initialize map and state
