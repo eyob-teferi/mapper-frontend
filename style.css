@@ -67,11 +67,11 @@ body {
     overflow-y: auto;
 }
 
-.form-container, .log-container, .order-container {
+.form-container, .log-container, .project-container {
     margin-bottom: 20px;
 }
 
-.form-container h5, .log-container h5, .order-container h5 {
+.form-container h5, .log-container h5, .project-container h5 {
     font-size: 1.1rem;
     font-weight: 500;
     color: #1a3c6d;
@@ -151,7 +151,7 @@ body {
     gap: 5px;
 }
 
-.btn-danger, .btn-secondary, .btn-info {
+.btn-danger, .btn-secondary, .btn-info, .btn-warning {
     border-radius: 8px;
     padding: 5px 10px;
     font-size: 0.8rem;
@@ -188,6 +188,57 @@ body {
 
 .btn-info:hover {
     background-color: #138496;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Current Project Indicator */
+.current-project {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e8f0fe;
+    border-radius: 8px;
+    border-left: 4px solid #1a3c6d;
+}
+
+.current-project h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1a3c6d;
+    margin-bottom: 0;
+}
+
+.current-project span {
+    font-weight: 600;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .current-project {
+        padding: 8px;
+    }
+
+    .current-project h5 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .current-project {
+        padding: 8px;
+    }
+
+    .current-project h5 {
+        font-size: 0.95rem;
+    }
 }
 
 /* Map Container */
@@ -294,7 +345,7 @@ body {
         padding: 15px;
     }
 
-    .form-container h5, .log-container h5, .order-container h5 {
+    .form-container h5, .log-container h5, .project-container h5 {
         font-size: 1rem;
     }
 
@@ -319,7 +370,7 @@ body {
         font-size: 0.8rem;
     }
 
-    .btn-danger, .btn-secondary, .btn-info {
+    .btn-danger, .btn-secondary, .btn-info, .btn-warning {
         padding: 4px 8px;
         font-size: 0.75rem;
     }
@@ -330,6 +381,7 @@ body {
 
     .map-buttons {
         gap: 8px;
+        flex-wrap: wrap; /* Allow buttons to wrap if needed */
     }
 
     .btn-success, .btn-outline-primary {
@@ -380,7 +432,7 @@ body {
         max-height: 50vh;
     }
 
-    .form-container h5, .log-container h5, .order-container h5 {
+    .form-container h5, .log-container h5, .project-container h5 {
         font-size: 0.95rem;
     }
 
@@ -417,7 +469,7 @@ body {
         gap: 5px;
     }
 
-    .btn-danger, .btn-secondary, .btn-info {
+    .btn-danger, .btn-secondary, .btn-info, .btn-warning {
         padding: 4px 8px;
         font-size: 0.7rem;
     }

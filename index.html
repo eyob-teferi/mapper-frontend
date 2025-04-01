@@ -26,25 +26,30 @@
 
     <!-- Main Container -->
     <div class="main-container" id="mainContainer">
-        <!-- Left Column (Orders, Form, and Added Locations) -->
+        <!-- Left Column (Projects, Form, and Added Locations) -->
         <div class="left-column">
-            <!-- Order Form -->
+            <!-- Project Form -->
             <div class="form-container">
-                <h5>Create Order</h5>
-                <form id="orderForm">
+                <h5>Create Project</h5>
+                <form id="projectForm">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="orderName" placeholder="Order name" required>
+                        <input type="text" class="form-control" id="projectName" placeholder="Project name" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create Order</button>
+                    <button type="submit" class="btn btn-primary">Create Project</button>
                 </form>
             </div>
 
-            <!-- Orders List -->
-            <div class="order-container">
-                <h5>Orders</h5>
-                <div id="orderList">
-                    <!-- Orders will be dynamically added here -->
+            <!-- Projects List -->
+            <div class="project-container">
+                <h5>Projects</h5>
+                <div id="projectList">
+                    <!-- Projects will be dynamically added here -->
                 </div>
+            </div>
+
+            <!-- Current Project Indicator -->
+            <div class="current-project" id="currentProjectContainer" style="display: none;">
+                <h5>Current Project: <span id="currentProjectName"></span></h5>
             </div>
 
             <!-- Location Form -->
@@ -85,52 +90,41 @@
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </button>
+                <button id="downloadJpegBtn" class="btn btn-outline-primary" style="display: none;">
+                    <i class="fas fa-download me-2"></i>Download Map as JPEG
+                    <div id="downloadJpegSpinner" class="spinner-border spinner-border-sm spinner" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button>
             </div>
             <div id="map"></div>
         </div>
     </div>
 
-    <!-- Comment out Login Container -->
-    <!--
-    <div class="container mt-5" id="loginContainer">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <div class="mb-3">
-                <label for="loginUsername" class="form-label">Username</label>
-                <input type="text" class="form-control" id="loginUsername" required>
+    <!-- Edit Project Modal -->
+    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProjectModalLabel">Edit Project Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProjectForm">
+                        <div class="mb-3">
+                            <label for="editProjectName" class="form-label">Project Name</label>
+                            <input type="text" class="form-control" id="editProjectName" required>
+                        </div>
+                        <input type="hidden" id="editProjectId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveProjectNameBtn">Save changes</button>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="loginPassword" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <p class="mt-3">
-            Don't have an account? <a href="#" id="showRegister">Register</a>
-        </p>
+        </div>
     </div>
-    -->
-
-    <!-- Comment out Register Container -->
-    <!--
-    <div class="container mt-5" id="registerContainer" style="display: none;">
-        <h2>Register</h2>
-        <form id="registerForm">
-            <div class="mb-3">
-                <label for="registerUsername" class="form-label">Username</label>
-                <input type="text" class="form-control" id="registerUsername" required>
-            </div>
-            <div class="mb-3">
-                <label for="registerPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="registerPassword" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-        <p class="mt-3">
-            Already have an account? <a href="#" id="showLogin">Login</a>
-        </p>
-    </div>
-    -->
 
     <!-- Toast Container -->
     <div class="toast-container">
